@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wife's Day, My Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #ffeff5 0%, #fff0f5 50%, #ffe6ee 100%);
+            color: #5a3e36;
+            line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(166, 71, 118, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Welcome Screen */
+        .welcome-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            z-index: 30;
+            background: linear-gradient(rgba(255, 182, 193, 0.1), rgba(255, 192, 203, 0.2)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 200 200'%3E%3Cdefs%3E%3Cpattern id='small-hearts' patternUnits='userSpaceOnUse' width='50' height='50' patternTransform='scale(0.5) rotate(0)'%3E%3Crect fill='rgba(255,255,255,0.9)' width='200' height='200'/%3E%3Cpath d='M12.5,12.5 C12.5,5.607 5.607,12.5 12.5,12.5 C19.393,12.5 12.5,19.393 12.5,12.5 C12.5,5.607 5.607,12.5 12.5,12.5' fill='rgba(255,105,180,0.2)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23small-hearts)'/%3E%3C/svg%3E");
+            transition: transform 1s ease, opacity 1s ease;
+        }
+        
+        .welcome-screen.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .welcome-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite alternate, float 3s infinite ease-in-out;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .welcome-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d63384;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease;
+        }
+        
+        .welcome-text {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+            animation: fadeIn 2.5s ease;
+        }
+        
+        .welcome-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeIn 3s ease;
+        }
+        
+        .welcome-btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(to right, #ff6b8b, #ff8eab);
+            color: white;
+            z-index: 1;
+        }
+        
+        .btn-yes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-yes:hover::before {
+            left: 100%;
+        }
+        
+        .btn-no {
+            background: transparent;
+            color: #d63384;
+            border: 2px solid #ff8eab;
+            position: relative;
+        }
+        
+        .welcome-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .romantic-question {
+            font-size: 2rem;
+            margin: 30px 0;
+            font-family: 'Dancing Script', cursive;
+            color: #d63384;
+            animation: fadeInOut 3s infinite, gentleGlow 2s infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes gentleGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 105, 180, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .no-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #d63384;
+            margin-top: 30px;
+            font-style: italic;
+            opacity: 0;
+            transition: opacity 1s ease;
+            position: absolute;
+            bottom: 40px;
+        }
+        
+        .no-message.show {
+            opacity: 1;
+        }
+        
+        /* Messages Screen */
+        .messages-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 240, 245, 0.9));
+        }
+        
+        .messages-screen.active {
+            opacity: 1;
+            pointer-events: all;
+            z-index: 25;
+        }
+        
+        .title {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d63384;
+            padding: 25px 20px 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
+            z-index: 10;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ff6b8b, transparent);
+        }
+        
+        .message-counter {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #d63384;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
+            z-index: 20;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scrolling-messages {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .message {
+            padding: 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: all 1.2s ease;
+            position: absolute;
+            width: calc(100% - 60px);
+            background: rgba(255, 250, 250, 0.97);
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 250px;
+            max-width: 90%;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .message.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 10;
+        }
+        
+        .emoji {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            filter: drop-shadow(0 0 8px rgba(214, 51, 132, 0.4));
+        }
+        
+        .message.active .emoji {
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
+        
+        @keyframes gentlePulse {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        
+        .text {
+            font-size: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 90%;
+            font-weight: 500;
+            background: linear-gradient(135deg, #d63384 0%, #5a3e36 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 5px;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .progress-bar-container {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 8px;
+            background: rgba(214, 51, 132, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 20;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff6b8b 0%, #ff8eab 99%, #ff8eab 100%);
+            border-radius: 4px;
+            transition: width 0.7s ease;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(214, 51, 132, 0.7);
+            animation: floatHeart 10s linear infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 100;
+            animation: sparkle 1.2s ease-out forwards;
+            box-shadow: 0 0 10px #ff9a9e;
+        }
+        
+        @keyframes sparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2) rotate(90deg);
+                opacity: 0;
+            }
+        }
+        
+        .love-burst {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+        
+        .love-burst i {
+            position: absolute;
+            font-size: 24px;
+            color: #ff6b8b;
+            opacity: 0;
+            animation: loveBurst 1.5s ease-out forwards;
+        }
+        
+        @keyframes loveBurst {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 1rem;
+            color: #d63384;
+            z-index: 30;
+            font-family: 'Dancing Script', cursive;
+            text-align: right;
+        }
+        
+        .infinite-message {
+            font-size: 2.2rem;
+            text-align: center;
+            animation: infiniteGlow 3s infinite alternate;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        @keyframes infiniteGlow {
+            0% { 
+                text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+                transform: scale(1);
+            }
+            100% { 
+                text-shadow: 0 0 20px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 105, 180, 0.6);
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Final screen styles */
+        .final-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.9) 0%, rgba(255, 192, 203, 0.9) 50%, rgba(255, 105, 180, 0.9) 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 2s ease;
+            z-index: 40;
+            text-align: center;
+        }
+        
+        .final-screen.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .final-infinity {
+            font-size: 8rem;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(214, 51, 132, 0.8);
+            margin-bottom: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .final-text {
+            font-family: 'Dancing Script', cursive;
+            color: #fff;
+            text-align: center;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            animation: gentleFloat 4s infinite ease-in-out;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .final-name {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .final-message {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .final-thankyou {
+            font-size: 2.2rem;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+                padding: 20px 15px 10px;
+            }
+            
+            .welcome-title {
+                font-size: 3rem;
+            }
+            
+            .text {
+                font-size: 1.8rem;
+            }
+            
+            .emoji {
+                font-size: 3.5rem;
+            }
+            
+            .message {
+                padding: 25px;
+                min-height: 230px;
+                width: calc(100% - 40px);
+            }
+            
+            .message-counter {
+                top: 20px;
+                right: 15px;
+                font-size: 1rem;
+            }
+            
+            .progress-bar-container {
+                bottom: 70px;
+            }
+            
+            .welcome-buttons {
+                flex-direction: column;
+            }
+            
+            .footer {
+                bottom: 10px;
+                right: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .final-infinity {
+                font-size: 6rem;
+            }
+            
+            .final-name {
+                font-size: 2.8rem;
+            }
+            
+            .final-message {
+                font-size: 2.2rem;
+            }
+            
+            .final-thankyou {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-text {
+                font-size: 1.2rem;
+            }
+            
+            .text {
+                font-size: 1.6rem;
+            }
+            
+            .message {
+                padding: 20px 15px;
+                min-height: 200px;
+                width: calc(100% - 30px);
+            }
+            
+            .emoji {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+            
+            .progress-bar-container {
+                bottom: 65px;
+                width: 85%;
+            }
+            
+            .welcome-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .romantic-question {
+                font-size: 1.6rem;
+            }
+            
+            .footer {
+                bottom: 8px;
+                right: 10px;
+                font-size: 0.8rem;
+            }
+            
+            .final-infinity {
+                font-size: 5rem;
+            }
+            
+            .final-name {
+                font-size: 2.2rem;
+            }
+            
+            .final-message {
+                font-size: 1.8rem;
+            }
+            
+            .final-thankyou {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    <div class="love-burst" id="love-burst"></div>
+    
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="welcome-screen" id="welcome-screen">
+            <div class="welcome-emoji">💖</div>
+            <h1 class="welcome-title">A Special Message Awaits</h1>
+            <p class="welcome-text">I've prepared something heartfelt for you. Are you ready to receive these words of love?</p>
+            
+            <div class="romantic-question" id="romantic-question">Will you be my forever?</div>
+            
+            <div class="welcome-buttons">
+                <button class="welcome-btn btn-yes" id="yes-btn">Yes, I'm Ready</button>
+                <button class="welcome-btn btn-no" id="no-btn">Not Yet</button>
+            </div>
+            <p class="no-message" id="no-message">Take your time, my love. I'll be here when you're ready.</p>
+        </div>
+        
+        <!-- Messages Screen -->
+        <div class="messages-screen" id="messages-screen">
+            <h1 class="title">Happy Wife's Day, My Love!</h1>
+            <div class="message-counter" id="message-counter">1/20</div>
+            
+            <div class="scrolling-messages" id="messages-container">
+                <!-- Messages will be inserted by JavaScript -->
+            </div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="footer">Made with Love for Pranavi💖</div>
+        </div>
+        
+        <!-- Final Screen -->
+        <div class="final-screen" id="final-screen">
+            <div class="final-infinity">♾️</div>
+            <div class="final-text">
+                <div class="final-name">Akilan 🩷 Pranavi</div>
+                <div class="final-message">Thank You For Everything</div>
+                <div class="final-thankyou">My Wife!😘</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // All 20 simple but heartfelt messages with customized emojis
+        const messages = [
+            { emoji: "💌", text: "Happy Wife's Day, my love! This day is all about celebrating you!" },
+            { emoji: "🌟", text: "From the day you entered my life, everything changed for the better!" },
+            { emoji: "💑", text: "You are not only my wife… you are my best friend, my soulmate, my everything!" },
+            { emoji: "☺️", text: "Every smile of yours brightens my world like sunshine after rain!" },
+            { emoji: "💪", text: "Your love makes me stronger, your care makes me complete!" },
+            { emoji: "🌸", text: "Every little thing you do fills my heart with happiness!" },
+            { emoji: "📖", text: "You are the most beautiful chapter of my life's story!" },
+            { emoji: "🖤", text: "Without you, my life would have been just a blank page!" },
+            { emoji: "🌞", text: "Every day with you feels so warm, happy, and complete!" },
+            { emoji: "🤍", text: "I love how you understand me even without words!" },
+            { emoji: "🎶", text: "Your laughter is my favorite melody!" },
+            { emoji: "🤗", text: "Your hug is my safest place in the world!" },
+            { emoji: "🫀", text: "You are the heartbeat of my soul, the love I will cherish forever." },
+            { emoji: "💘", text: "I fall in love with you again and again, every single day!" },
+            { emoji: "⏳", text: "No distance, no time, nothing could ever reduce my love for you!" },
+            { emoji: "🤝", text: "I promise to hold your hand, in every joy and every storm!" },
+            { emoji: "😊", text: "I promise to make you smile, even on the toughest days!" },
+            { emoji: "🌅", text: "I promise to love you more with every sunrise!" },
+            { emoji: "🫶🏻", text: "Forever isn't enough for being with you, my love!" },
+            { emoji: "💖", text: "So finally..... Happy Wife's Day, My Love ❤ Forever yours!" }
+        ];
+        
+        // Romantic questions for the welcome screen
+        const romanticQuestions = [
+            "Will you be my forever?",
+            "Do you believe in soulmates?",
+            "Is your heart ready for love?",
+            "Can I have your heart?",
+            "Will you accept my love?",
+            "Are you ready for forever?",
+           
+            "Will you journey through life with me?",
+            "Is love the answer to everything?",
+            "Will you be my always?"
+        ];
+        
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                heart.style.opacity = Math.random() * 0.7 + 0.3;
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Create love burst effect
+        function createLoveBurst(x, y, count = 15) {
+            const container = document.getElementById('love-burst');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < count; i++) {
+                const angle = (i * (360 / count)) * (Math.PI / 180);
+                const distance = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                const heart = document.createElement('i');
+                heart.classList.add('fas');
+                heart.classList.add('fa-heart');
+                heart.style.setProperty('--tx', tx + 'px');
+                heart.style.setProperty('--ty', ty + 'px');
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                heart.style.color = `hsl(${Math.random() * 360}, 100%, 65%)`;
+                
+                container.appendChild(heart);
+            }
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 1500);
+        }
+        
+        // Create sparkle effect
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1200);
+        }
+        
+        // Initialize the messages
+        function initMessages() {
+            const container = document.getElementById('messages-container');
+            
+            messages.forEach((message, index) => {
+                const messageEl = document.createElement('div');
+                messageEl.classList.add('message');
+                messageEl.setAttribute('data-index', index);
+                messageEl.innerHTML = `
+                    <span class="emoji">${message.emoji}</span>
+                    <p class="text">${message.text}</p>
+                `;
+                container.appendChild(messageEl);
+                
+                // Add sparkle effect on click
+                messageEl.addEventListener('click', (e) => {
+                    createLoveBurst(e.clientX, e.clientY);
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => {
+                            createSparkle(e.clientX + (Math.random() * 50 - 25), e.clientY + (Math.random() * 50 - 25));
+                        }, i * 100);
+                    }
+                });
+            });
+        }
+        
+        // Auto-scroll functionality
+        let currentMessage = 0;
+        let isPlaying = true;
+        let scrollInterval;
+        
+        function showMessage(index) {
+            const messages = document.querySelectorAll('.message');
+            const progressBar = document.getElementById('progress-bar');
+            const counter = document.getElementById('message-counter');
+            
+            // Remove active class from all messages
+            messages.forEach(msg => msg.classList.remove('active'));
+            
+            // Add active class to current message
+            setTimeout(() => {
+                messages[index].classList.add('active');
+                
+                // If it's the last message, show final screen
+                if (index === messages.length - 1) {
+                    setTimeout(() => {
+                        document.getElementById('messages-screen').classList.remove('active');
+                        document.getElementById('final-screen').classList.add('active');
+                        
+                        // Create a big love burst effect
+                        createLoveBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+                        
+                        // Add sparkle effects
+                        for (let i = 0; i < 20; i++) {
+                            setTimeout(() => {
+                                createSparkle(
+                                    Math.random() * window.innerWidth,
+                                    Math.random() * window.innerHeight
+                                );
+                            }, i * 100);
+                        }
+                    }, 5000); // Show final screen after 5 seconds on last message
+                }
+                
+                // Add love burst effect when message changes
+                createLoveBurst(window.innerWidth / 2, window.innerHeight / 2, 30);
+                
+                // Add sparkle effects
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        createSparkle(
+                            Math.random() * window.innerWidth,
+                            Math.random() * window.innerHeight
+                        );
+                    }, i * 150);
+                }
+            }, 300);
+            
+            // Update progress bar
+            progressBar.style.width = `${((index + 1) / messages.length) * 100}%`;
+            
+            // Update counter
+            if (index < messages.length - 1) {
+                counter.textContent = `${index + 1}/${messages.length}`;
+            } else {
+                counter.textContent = "Final Message";
+            }
+            
+            currentMessage = index;
+        }
+        
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                let nextMessage = currentMessage + 1;
+                if (nextMessage >= messages.length) {
+                    // Stop at the last message
+                    clearInterval(scrollInterval);
+                    return;
+                }
+                showMessage(nextMessage);
+            }, 5000); // Changed to 5000 ms (5 seconds)
+        }
+        
+        // Change romantic question periodically
+        function rotateRomanticQuestions() {
+            const questionElement = document.getElementById('romantic-question');
+            let currentQuestion = 0;
+            
+            setInterval(() => {
+                currentQuestion = (currentQuestion + 1) % romanticQuestions.length;
+                questionElement.style.opacity = 0;
+                
+                setTimeout(() => {
+                    questionElement.textContent = romanticQuestions[currentQuestion];
+                    questionElement.style.opacity = 1;
+                }, 1000);
+            }, 4000);
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            createHearts();
+            initMessages();
+            rotateRomanticQuestions();
+            
+            // Set up welcome screen interactions
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const messageScreen = document.getElementById('messages-screen');
+            const yesBtn = document.getElementById('yes-btn');
+            const noBtn = document.getElementById('no-btn');
+            const noMessage = document.getElementById('no-message');
+            
+            yesBtn.addEventListener('click', () => {
+                welcomeScreen.classList.add('hidden');
+                setTimeout(() => {
+                    messageScreen.classList.add('active');
+                    showMessage(0);
+                    startAutoScroll();
+                }, 500);
+                
+                // Create a big love burst effect
+                createLoveBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
+                
+                // Add sparkle effect
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        createSparkle(
+                            Math.random() * window.innerWidth,
+                            Math.random() * window.innerHeight
+                        );
+                    }, i * 100);
+                }
+            });
+            
+            noBtn.addEventListener('click', () => {
+                noMessage.classList.add('show');
+                
+                // Create love burst at the button position
+                const rect = noBtn.getBoundingClientRect();
+                createLoveBurst(rect.left + rect.width/2, rect.top + rect.height/2, 10);
+                
+                // Move the button a little
+                const moveX = Math.random() * 100 - 50;
+                const moveY = Math.random() * 100 - 50;
+                noBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                
+                // Reset after a while
+                setTimeout(() => {
+                    noMessage.classList.remove('show');
+                }, 3000);
+            });
+            
+            // Add sparkle effect on click anywhere
+            document.addEventListener('click', (e) => {
+                createSparkle(e.clientX, e.clientY);
+            });
+        });
+    </script>
+</body>
+</html>
